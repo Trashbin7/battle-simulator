@@ -60,8 +60,6 @@ while loop == 1:
     slowprint("Welcome back to Battle Simulator!\n\n\n")
     fastprint("Choose Your Difficulty:\n[1] - Baby Mode\n[2] - Easy Mode\n[3] - Normal Mode\n[4] - Hard Mode\n[5] - Chad Mode\n\n[404] - Not Found\n\n\n")
     
-    loading("start")
-    
     choice = input("Pick one: ")
     os.system('cls' if os.name == 'nt' else 'clear')
     time.sleep(2)
