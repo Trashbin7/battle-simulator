@@ -1,9 +1,7 @@
 import time
 import random
 import os
-from halo import Halo
 
-spinner = Halo(text='Loading...', spinner='')
 
 loop = 1
 choice = 0
@@ -11,30 +9,61 @@ userhp = 0
 enemyhp = 0
 
 
-while loop == 1:
-    print("-------------------------", end="")
-    time.sleep(0.1)s
-    print("-------------------------")
-    time.sleep(0.1)
-    print("Welcome", end="")
-    time.sleep(0.1)
-    print(" back", end="")
-    time.sleep(0.1)
-    print(" to", end="")
-    time.sleep(0.1)
-    print(" Battle", end="")
-    time.sleep(0.1)
-    print(" Simulator", end="")
-    time.sleep(0.1)
-    print("!\n\n")
-    time.sleep(0.1)
+def loading(value):
+    if value == "start":
+        time.sleep(0.5)
+        for i in range(2):
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("[----] Loading...")
+            time.sleep(0.025)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("[=---] Loading...")
+            time.sleep(0.025)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("[==--] Loading...")
+            time.sleep(0.025)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("[===-] Loading...")
+            time.sleep(0.025)            
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("[====] Loading...")
+            time.sleep(0.025)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("[-===] Loading...")
+            time.sleep(0.025)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("[--==] Loading...")
+            time.sleep(0.025)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("[---=] Loading...")
+            time.sleep(0.025)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("[----] Loading...")
+            time.sleep(0.2)
+        time.sleep(1)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("[----] Loading done.")
 
-    print("Choose Your Difficulty:\n")
-    time.sleep(0.3)
-    print("[1] - Baby Mode\n[2] - Easy Mode\n[3] - Normal Mode\n[4] - Hard Mode\n[5] - Chad Mode\n\n[404] - Not Found\n\n")
+def slowprint(string):
+    for letter in string:
+        print(letter, end='', flush=True)
+        time.sleep(0.03)
+
+def fastprint(string):
+    for letter in string:
+        print(letter, end='', flush=True)
+
+
+
+while loop == 1:
+    print("--------------------------------------------------")
+    slowprint("Welcome back to Battle Simulator!\n\n\n")
+    fastprint("Choose Your Difficulty:\n[1] - Baby Mode\n[2] - Easy Mode\n[3] - Normal Mode\n[4] - Hard Mode\n[5] - Chad Mode\n\n[404] - Not Found\n\n\n")
+    
+    loading("start")
+    
     choice = input("Pick one: ")
     os.system('cls' if os.name == 'nt' else 'clear')
-    spinner.start()
     time.sleep(2)
     
     choice = str(choice)
@@ -55,7 +84,7 @@ while loop == 1:
         userhp = 10
         enemyhp = 10000
     elif choice == "404":
-        spinner.warn("Game could not be found.")
+        print("Game could not be found.")
         time.sleep(3)
         os.system('cls' if os.name == 'nt' else 'clear')
 
