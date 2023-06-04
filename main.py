@@ -14,12 +14,14 @@
 # 19/4/2023 (DD/MM/YYYY)
 #
 #
-#
+# UNSTABLE
 
 
+print("loading...")
 import os
 import random
 import time
+from replit import db
 
 loop = 1
 choice = 0
@@ -34,7 +36,14 @@ ultidesc = 0
 playerturn = 0
 pickedultimate = 0
 ultianswer = 0
+usertry = 0
+admintry = 0
 
+
+adminuser = os.environ['ADMIN_USERNAME']
+adminpass = os.environ['ADMIN_PASSWORD']
+# btw if you find the password dm me on discord
+# mertcinarsah#5188
 
 
 def slowprint(string):
@@ -45,6 +54,12 @@ def slowprint(string):
 def fastprint(string):
     for letter in string:
         print(letter, end='', flush=True)
+
+def admin():
+  userhp = input("Your health: ")
+  enemyhp = input("Enemy health: ")
+  username = usertry
+  return userhp, enemyhp, username
 
 def randomulti():
     ultiid = random.randint(1, 6)
@@ -77,12 +92,22 @@ def ultimate():
     ultianswer = input("1-2: ")
     if ultianswer == "1":
         if ultiid == 1:
-            dmg = random.randint(7, 12)
+            dmg = random.randint(5, 10)
             print(f"You dealt {dmg} damage to the enemy.")
             enemyhp = enemyhp - dmg
             ultimatedmg = enemyhp
             return enemyhp
         if ultiid == 2:
+            dmg = random.randint(5, 10)
+            print(f"You dealt {dmg} damage to the enemy.")
+            enemyhp = enemyhp - dmg
+            ultimatedmg = enemyhp
+            return enemyhp
+        if ultiid == 3:
+            healamount = random.randint(5, 10)
+            print(f"{healamount}")
+            userhp = userhp + healamount
+            return userhp
 
 
 
@@ -96,7 +121,7 @@ while loop == 1:
     else: 
         slowprint(f"Welcome back to Battle Simulator, {username}!\n\n\n")
 
-    fastprint("Choose Your Difficulty:\n[1] - Baby Mode\n[2] - Easy Mode\n[3] - Normal Mode\n[4] - Hard Mode\n[5] - Chad Mode\n\n\n")
+    fastprint("Choose Your Difficulty:\n[1] - Baby Mode\n[2] - Easy Mode\n[3] - Normal Mode\n[4] - Hard Mode\n[5] - Chad Mode\n\nWARNING: Unstable Version! get an older version or do not use the ultimate attack!\n")
     
     choice = input("Pick one: ")
     
@@ -117,13 +142,24 @@ while loop == 1:
     elif choice == "5":
         userhp = 10
         enemyhp = 10000
+    elif choice == "ADMIN":
+      usertry = input("Username: ")
+      if usertry == adminuser:
+        admintry = input("Password: ")
+        if admintry == adminpass:
+          admin()
+        else:
+          print("Wrong username or password!")
+      else:
+        input("Password: ")
+        print("Wrong username or password!")
     else:
-        print("You need to pick between 1-5!")
+        print("\n\n\nYou need to pick between 1-5!")
         time.sleep(0.5)
-        print("Picking 3 for you...")
-        time.sleep(3)
-        userhp = 100
-        enemyhp = 100
+        print("Stop and Start to continue!")
+        time.sleep(1.5)
+        print("\n(you could continue if you want, but it would be REALLLY buggy and glichy. if you really want, press [ENTER].)")
+        input()
     if username == "":
         username = input("Username: ")
     else:
@@ -137,7 +173,6 @@ while loop == 1:
     print("Setting up the game...")
     randomulti()
     time.sleep(0.5)
-
 
     gameloop = 1
     while gameloop == 1:
